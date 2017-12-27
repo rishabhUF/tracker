@@ -1,9 +1,12 @@
-package risshar.entity;
+package risshar.service;
 
+import org.springframework.stereotype.Service;
+import risshar.entity.Vehicle;
 import risshar.service.VehicleService;
 
 import java.util.List;
 
+@Service
 public class VehicleServiceImpl implements VehicleService {
     public List<Vehicle> findAll() {
         return null;

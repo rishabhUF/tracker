@@ -2,11 +2,14 @@ package risshar.entity;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
-@Component
+@Entity
 public class Vehicle {
 
+    @Id
     private String vin;
     private String make;
     private String model;
