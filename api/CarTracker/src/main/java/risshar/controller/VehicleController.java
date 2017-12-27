@@ -1,36 +1,53 @@
 package risshar.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import risshar.entity.Vehicle;
+import risshar.service.VehicleService;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping(value = "/vehicles")
 public class VehicleController {
 
+    @Autowired
+    VehicleService service;
+    @RequestMapping(method = RequestMethod.GET)
+
+    //All vehicles endpoints.
     public List<Vehicle> findAll()
     {
-        return null;
+        System.out.println("Inside findAll VehicleController");
+        return service.findAll();
     }
 
-    public Vehicle findOne()
+    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    public Vehicle findOne(@PathVariable("id") String vehicleId)
     {
-        return null;
+        System.out.println("Inside findOne VehicleController");
+        return service.findOne(vehicleId);
     }
 
-    public Vehicle create()
+    @RequestMapping(method = RequestMethod.POST)
+    public Vehicle create(@RequestBody Vehicle[] vehicles)
     {
-        return null;
+        System.out.println("Inside create VehicleController");
+        return service.create(vehicles);
     }
 
-    public List<Vehicle> update()
+    @RequestMapping(method = RequestMethod.PUT)
+    public List<Vehicle> update(@RequestBody Vehicle[] vehicles)
     {
-        return null;
+        System.out.println("Inside update PUT REQUEST VehicleController");
+        return service.update(vehicles);
     }
 
-    public void delete()
+    @RequestMapping(method = RequestMethod.DELETE, value="/{id}")
+    public void delete(@PathVariable("id") String vehicleId)
     {
-        return;
+        System.out.println("Inside Delete VehicleController");
+        return service.delete(vehicleId);
     }
 }
-
