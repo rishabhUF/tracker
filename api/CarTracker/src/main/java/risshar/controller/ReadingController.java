@@ -1,7 +1,9 @@
 package risshar.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import risshar.entity.Reading;
+import risshar.service.ReadingsService;
 
 import java.util.List;
 
@@ -9,39 +11,42 @@ import java.util.List;
 @RequestMapping(value = "/readings")
 public class ReadingController {
 
+    @Autowired
+    ReadingsService readingsService;
+
     @RequestMapping(method = RequestMethod.GET)
     public List<Reading> findAllReadings()
     {
         System.out.println("Inside the findAll ReadingsController");
-        return null;
+        return readingsService.findAllReadings();
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/{id}")
-    public Reading findOneReadings(@PathVariable("id") String ReadingId)
+    public Reading findOneReadings(@PathVariable("id") String readingId)
     {
         System.out.println("Inside the findOne ReadingsController");
-        return null;
+        return readingsService.findById(readingId);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Reading createReadings(@RequestBody Reading reading)
     {
         System.out.println("Inside the create ReadingsController");
-        return null;
+        return readingsService.createReadings(reading);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public Reading updateReadings(@RequestBody Reading reading)
     {
         System.out.println("Inside the update ReadingsController");
-        return null;
+        return readingsService.updateReadings(reading);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value="/{id}")
-    public void deleteReadings(@PathVariable("id") String ReadingId)
+    public void deleteReadings(@PathVariable("id") String readingId)
     {
         System.out.println("Inside the delete ReadingsController");
-        return;
+        return readingsService.deleteReadings(readingId);
     }
 
 }

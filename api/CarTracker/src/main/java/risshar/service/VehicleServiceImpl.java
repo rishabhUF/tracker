@@ -1,30 +1,56 @@
 package risshar.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import risshar.entity.Vehicle;
-import risshar.service.VehicleService;
+import risshar.repository.VehiclesRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class VehicleServiceImpl implements VehicleService {
+
+    @Autowired
+    VehiclesRepository vehiclesRepository;
+
+
     public List<Vehicle> findAll() {
-        return null;
+        return vehiclesRepository.findAll();
     }
 
-    public Vehicle findOne(String vin) {
-        return null;
+    public Vehicle findOne(String id) {
+        Vehicle existing = vehiclesRepository.findOne(id);
+        if(existing == null)
+        {
+            //throw new ResourceNotFoundException("");
+        }
+        return existing;
     }
 
+    @Transactional
     public void create(Vehicle[] vehicle) {
+        for(Vehicle vehicle1 : vehicle)
+        {
+            vehiclesRepository.create(vehicle1);
+        }
 
     }
 
-    public Vehicle[] update(Vehicle[] vehicle) {
-        return new Vehicle[0];
+    @Transactional
+    public Vehicle[] update(Vehicle[] vehicle)
+    {
+        return vehiclesRepository.update(vehicle);
     }
 
+    @Transactional
     public void delete(String id) {
+        Vehicle existing=vehiclesRepository.findOne(id);
+
+        if(existing==null){
+            //throw new ResourceNotFoundException("Resource Not found with Vehicles id ="+i`d);
+        }
+        vehiclesRepository.delete(existing);
 
     }
 }

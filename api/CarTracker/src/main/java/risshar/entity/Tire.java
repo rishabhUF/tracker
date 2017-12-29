@@ -1,11 +1,15 @@
 package risshar.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
 public class Tire {
 
+    @Id
     private String id;
     private int frontLeft;
     private int frontRight;

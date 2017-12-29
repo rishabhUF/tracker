@@ -2,13 +2,15 @@ package risshar.entity;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.security.Timestamp;
 import java.util.UUID;
 
-@Component
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Reading.findAllReading", query = "SELECT reading FROM Reading reading ORDER BY reading.vin"),
+        @NamedQuery(name = "Reading.findOneReading", query = "SELECT reading FROM Reading reading WHERE reading.id= :paramReadingId")
+})
 public class Reading {
 
     @Id
@@ -24,6 +26,17 @@ public class Reading {
     private boolean engineCoolantLow;
     private boolean cruiseControlOn;
     private int engineRpm;
+
+    public Tire getTire() {
+        return tire;
+    }
+
+    public void setTire(Tire tire) {
+        this.tire = tire;
+    }
+
+    @OneToOne
+    private Tire tire;
 
     public Reading() {
         this.id = UUID.randomUUID().toString();

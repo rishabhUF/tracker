@@ -8,7 +8,7 @@ public interface ReadingsService {
 
     List<Reading> findAllReadings();
 
-    List<Reading> findByVin(String vin);
+    Reading findById(String vin);
 
     Reading createReadings(Reading readings);
 
