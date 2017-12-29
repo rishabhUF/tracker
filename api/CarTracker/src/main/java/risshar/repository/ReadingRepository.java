@@ -18,4 +18,8 @@ public interface ReadingRepository {
     void updateReadings(Reading readings);
 
     void deleteReadings(String vehicleId);
+
+    // Alerts Function definitions
+    void createAlert(String vehicleVin, String priority, String alertMessage);
+
 }

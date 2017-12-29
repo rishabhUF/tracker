@@ -1,8 +1,10 @@
 package risshar.repository;
 
 import org.springframework.stereotype.Repository;
+import risshar.entity.Alert;
 import risshar.entity.Reading;
 import risshar.entity.Tire;
+import risshar.entity.Vehicle;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -37,6 +39,20 @@ public class ReadingRepositoryImpl implements ReadingRepository {
         entityManager.persist(tire);
         readings.setTire(tire);
         entityManager.persist(readings);
+
+        TypedQuery<Vehicle> query=entityManager.createNamedQuery("Vehicle.findOne",Vehicle.class);
+        query.setParameter("paramVehicleId",readings.getVin());
+
+        Vehicle existingVehicle = query.getSingleResult();
+
+        if((existingVehicle.getMaxFuelVolume()*0.1) > readings.getFuelVolume())
+        {
+            createAlert(readings.getVin(),"MEDIUM","Fuel is low");
+        }
+        if((existingVehicle.getRedlineRpm() < readings.getEngineRpm()))
+        {
+            createAlert(readings.getVin(),"HIGH","RPM is very high");
+        }
         return readings;
     }
 
@@ -45,6 +61,15 @@ public class ReadingRepositoryImpl implements ReadingRepository {
     }
 
     public void deleteReadings(String vehicleId) {
+        TypedQuery<Reading> query = entityManager.createNamedQuery("Reading.findOneReading",Reading.class);
+        query.setParameter("paramVehicleId",vehicleId);
+        Reading queryResult = query.getSingleResult();
+        entityManager.remove(queryResult);
+    }
 
+    public void createAlert(String vehicleVin, String priority, String alertMessage) {
+        System.out.println("Creating Alerts");
+        Alert alert = new Alert(vehicleVin,priority,alertMessage);
+        entityManager.persist(alert);
     }
 }

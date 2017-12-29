@@ -8,10 +8,7 @@ public class Alert {
     String priority;
     String alertMessage;
 
-    public Alert()
-    {
-        this.id = UUID.randomUUID().toString();
-    }
+
 
     public String getId() {
         return id;
@@ -42,6 +39,14 @@ public class Alert {
     }
 
     public void setAlertMessage(String alertMessage) {
+        this.alertMessage = alertMessage;
+    }
+
+    public Alert(String vehicleVin, String priority, String alertMessage)
+    {
+        this.id = UUID.randomUUID().toString();
+        this.vehicleVin = vehicleVin;
+        this.priority = priority;
         this.alertMessage = alertMessage;
     }
 }

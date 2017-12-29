@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.security.Timestamp;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -18,7 +19,7 @@ public class Reading {
     private String vin;
     private String latitude;
     private String longitude;
-    private Timestamp timestamp;
+    private Date timestamp;
     private double fuelVolume;
     private int speed;
     private int engineHp;
@@ -74,11 +75,11 @@ public class Reading {
         this.longitude = longitude;
     }
 
-    public Timestamp getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 

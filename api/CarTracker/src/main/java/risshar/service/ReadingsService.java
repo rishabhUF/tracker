@@ -12,7 +12,7 @@ public interface ReadingsService {
 
     Reading createReadings(Reading readings);
 
-    void updateReadings(Reading readings);
+    Reading updateReadings(Reading readings);
 
     void deleteReadings(String vehicleId);
 }

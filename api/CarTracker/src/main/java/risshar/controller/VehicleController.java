@@ -49,7 +49,6 @@ public class VehicleController {
     public void delete(@PathVariable("id") String vehicleId)
     {
         System.out.println("Inside Delete VehicleController");
-        //return service.delete(vehicleId);
-        return;
+        vehicleService.delete(vehicleId);
     }
 }

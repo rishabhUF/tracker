@@ -9,6 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/readings")
+@CrossOrigin(origins = {"http://mocker.egen.io","http://localhost:8080"}, maxAge = 3600)
+
 public class ReadingController {
 
     @Autowired
@@ -46,7 +48,7 @@ public class ReadingController {
     public void deleteReadings(@PathVariable("id") String readingId)
     {
         System.out.println("Inside the delete ReadingsController");
-        return readingsService.deleteReadings(readingId);
+        readingsService.deleteReadings(readingId);
     }
 
 }
