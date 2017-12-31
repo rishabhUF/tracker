@@ -48,6 +48,7 @@ public class ReadingRepositoryImpl implements ReadingRepository {
         if((existingVehicle.getRedlineRpm() < readings.getEngineRpm())) {
             createAlert(readings.getVin(),"HIGH","RPM is very high");
         }
+        entityManager.persist(tire);
         entityManager.persist(readings);
         return readings;
     }
@@ -64,12 +65,8 @@ public class ReadingRepositoryImpl implements ReadingRepository {
     }
 
     public void createAlert(String vehicleVin, String priority, String alertMessage) {
-        Alert alert = new Alert();
-        System.out.println(alert.getId());
-        alert.setVehicleVin(vehicleVin);
-        alert.setPriority(priority);
-        alert.setAlertMessage(alertMessage);
-        System.out.println(alert);
+        Alert alert = new Alert(vehicleVin, priority, alertMessage);
         entityManager.persist(alert);
+
     }
 }

@@ -16,12 +16,13 @@ public class Tire {
     private int rearLeft;
     private int rearRight;
 
-    public String getId() {
-        return id;
+    public Tire()
+    {
+        this.id = UUID.randomUUID().toString();
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getId() {
+        return id;
     }
 
     public int getFrontLeft() {
@@ -64,9 +65,6 @@ public class Tire {
                 ", rearRight=" + rearRight +
                 '}';
     }
-    public Tire()
-    {
-        this.id = UUID.randomUUID().toString();
-    }
+
 
 }
