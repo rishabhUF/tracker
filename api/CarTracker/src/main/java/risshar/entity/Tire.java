@@ -13,6 +13,8 @@ public class Tire {
     private String id;
     private int frontLeft;
     private int frontRight;
+    private int rearLeft;
+    private int rearRight;
 
     public String getId() {
         return id;
@@ -54,9 +56,14 @@ public class Tire {
         this.rearRight = rearRight;
     }
 
-    private int rearLeft;
-    private int rearRight;
-
+    public String toString() {
+        return "Tires{" +
+                "frontLeft=" + frontLeft +
+                ", frontRight=" + frontRight +
+                ", rearLeft=" + rearLeft +
+                ", rearRight=" + rearRight +
+                '}';
+    }
     public Tire()
     {
         this.id = UUID.randomUUID().toString();

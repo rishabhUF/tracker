@@ -19,35 +19,30 @@ public class ReadingController {
     @RequestMapping(method = RequestMethod.GET)
     public List<Reading> findAllReadings()
     {
-        System.out.println("Inside the findAll ReadingsController");
         return readingsService.findAllReadings();
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/{id}")
     public Reading findOneReadings(@PathVariable("id") String readingId)
     {
-        System.out.println("Inside the findOne ReadingsController");
         return readingsService.findById(readingId);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Reading createReadings(@RequestBody Reading reading)
     {
-        System.out.println("Inside the create ReadingsController");
         return readingsService.createReadings(reading);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public Reading updateReadings(@RequestBody Reading reading)
     {
-        System.out.println("Inside the update ReadingsController");
         return readingsService.updateReadings(reading);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value="/{id}")
     public void deleteReadings(@PathVariable("id") String readingId)
     {
-        System.out.println("Inside the delete ReadingsController");
         readingsService.deleteReadings(readingId);
     }
 

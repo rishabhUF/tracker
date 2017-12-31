@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.security.Timestamp;
+import java.sql.Time;
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,7 +20,6 @@ public class Reading {
     private String vin;
     private String latitude;
     private String longitude;
-    private Date timestamp;
     private double fuelVolume;
     private int speed;
     private int engineHp;
@@ -28,16 +28,18 @@ public class Reading {
     private boolean cruiseControlOn;
     private int engineRpm;
 
-    public Tire getTire() {
-        return tire;
-    }
-
-    public void setTire(Tire tire) {
-        this.tire = tire;
-    }
-
     @OneToOne
-    private Tire tire;
+    private Tire tires;
+
+    public Tire getTires() {
+        return tires;
+    }
+
+    public void setTires(Tire tires) {
+        this.tires = tires;
+    }
+
+
 
     public Reading() {
         this.id = UUID.randomUUID().toString();
@@ -73,14 +75,6 @@ public class Reading {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
     }
 
     public double getFuelVolume() {

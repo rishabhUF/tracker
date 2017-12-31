@@ -3,6 +3,7 @@ package risshar.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import risshar.entity.Vehicle;
+import risshar.exception.ResourceNotFoundException;
 import risshar.repository.VehiclesRepository;
 
 import javax.transaction.Transactional;
@@ -23,7 +24,7 @@ public class VehicleServiceImpl implements VehicleService {
         Vehicle existing = vehiclesRepository.findOne(id);
         if(existing == null)
         {
-            //throw new ResourceNotFoundException("");
+            throw new ResourceNotFoundException("Resource Not found");
         }
         return existing;
     }
@@ -48,7 +49,7 @@ public class VehicleServiceImpl implements VehicleService {
         Vehicle existing=vehiclesRepository.findOne(id);
 
         if(existing==null){
-            //throw new ResourceNotFoundException("Resource Not found with Vehicles id ="+i`d);
+            throw new ResourceNotFoundException("Resource Not found with Vehicles id ="+id);
         }
         vehiclesRepository.delete(existing);
 

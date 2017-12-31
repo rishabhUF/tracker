@@ -1,6 +1,7 @@
 package risshar.repository;
 
 import org.springframework.stereotype.Repository;
+import risshar.entity.Alert;
 import risshar.entity.Reading;
 import risshar.entity.Tire;
 

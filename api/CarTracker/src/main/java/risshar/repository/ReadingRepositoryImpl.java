@@ -9,6 +9,7 @@ import risshar.entity.Vehicle;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -26,7 +27,7 @@ public class ReadingRepositoryImpl implements ReadingRepository {
     }
 
     public Reading findById(String id) {
-        TypedQuery<Reading> query=entityManager.createNamedQuery("Reading.findOneReading",Reading.class);//createQuery("SELECT emp FROM  Employee emp where emp.email=:paramEmail",Employee.class);
+        TypedQuery<Reading> query=entityManager.createNamedQuery("Reading.findOneReading",Reading.class);
         query.setParameter("paramVehicleId",id);
         List<Reading> resultList=query.getResultList();
         if(resultList!=null && resultList.size()==1)
@@ -35,24 +36,19 @@ public class ReadingRepositoryImpl implements ReadingRepository {
             return  null;
     }
 
-    public Reading createReadings(Reading readings, Tire tire) {
-        entityManager.persist(tire);
-        readings.setTire(tire);
-        entityManager.persist(readings);
 
+    public Reading createReadings(Reading readings, Tire tire) {
         TypedQuery<Vehicle> query=entityManager.createNamedQuery("Vehicle.findOne",Vehicle.class);
         query.setParameter("paramVehicleId",readings.getVin());
-
-        Vehicle existingVehicle = query.getSingleResult();
-
+        Vehicle existingVehicle = query.getResultList().get(0);
         if((existingVehicle.getMaxFuelVolume()*0.1) > readings.getFuelVolume())
         {
             createAlert(readings.getVin(),"MEDIUM","Fuel is low");
         }
-        if((existingVehicle.getRedlineRpm() < readings.getEngineRpm()))
-        {
+        if((existingVehicle.getRedlineRpm() < readings.getEngineRpm())) {
             createAlert(readings.getVin(),"HIGH","RPM is very high");
         }
+        entityManager.persist(readings);
         return readings;
     }
 
@@ -68,8 +64,12 @@ public class ReadingRepositoryImpl implements ReadingRepository {
     }
 
     public void createAlert(String vehicleVin, String priority, String alertMessage) {
-        System.out.println("Creating Alerts");
-        Alert alert = new Alert(vehicleVin,priority,alertMessage);
+        Alert alert = new Alert();
+        System.out.println(alert.getId());
+        alert.setVehicleVin(vehicleVin);
+        alert.setPriority(priority);
+        alert.setAlertMessage(alertMessage);
+        System.out.println(alert);
         entityManager.persist(alert);
     }
 }

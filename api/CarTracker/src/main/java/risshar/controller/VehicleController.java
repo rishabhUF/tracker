@@ -19,36 +19,31 @@ public class VehicleController {
     //All vehicles endpoints.
     public List<Vehicle> findAll()
     {
-        System.out.println("Inside findAll VehicleController");
         return vehicleService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/{id}")
     public Vehicle findOne(@PathVariable("id") String vehicleId)
     {
-        System.out.println("Inside findOne VehicleController");
         return vehicleService.findOne(vehicleId);
     }
 
+    // For future usage. If we get POST request for vehicles
     @RequestMapping(method = RequestMethod.POST)
     public Vehicle create(@RequestBody Vehicle[] vehicles)
     {
-        System.out.println("Inside create VehicleController");
-        //return service.create(vehicles);
         return null;
     }
 
     @RequestMapping(method = RequestMethod.PUT)
     public Vehicle[] update(@RequestBody Vehicle[] vehicles)
     {
-        System.out.println("Inside update PUT REQUEST VehicleController");
         return vehicleService.update(vehicles);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value="/{id}")
     public void delete(@PathVariable("id") String vehicleId)
     {
-        System.out.println("Inside Delete VehicleController");
         vehicleService.delete(vehicleId);
     }
 }
