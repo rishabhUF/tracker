@@ -20,6 +20,10 @@ public class ReadingsServiceImpl implements ReadingsService {
         return readingRepository.findAllReadings();
     }
 
+    public List<Reading> findReadingByVin(String vin) {
+        return readingRepository.findReadingsByVin(vin);
+    }
+
     public Reading findById(String Id) {
         Reading existingReading = readingRepository.findById(Id);
         if(existingReading == null)

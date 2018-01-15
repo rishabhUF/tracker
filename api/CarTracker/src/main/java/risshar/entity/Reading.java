@@ -11,7 +11,8 @@ import java.util.UUID;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Reading.findAllReading", query = "SELECT reading FROM Reading reading ORDER BY reading.vin"),
-        @NamedQuery(name = "Reading.findOneReading", query = "SELECT reading FROM Reading reading WHERE reading.id= :paramReadingId")
+        @NamedQuery(name = "Reading.findOneReading", query = "SELECT reading FROM Reading reading WHERE reading.id= :paramReadingId"),
+        @NamedQuery(name = "Reading.findReadingsByVin", query = "SELECT reading FROM Reading reading WHERE reading.vin= :paramVehicleVin")
 })
 public class Reading {
 

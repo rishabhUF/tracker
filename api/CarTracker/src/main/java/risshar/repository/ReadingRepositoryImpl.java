@@ -26,6 +26,13 @@ public class ReadingRepositoryImpl implements ReadingRepository {
 
     }
 
+    public List<Reading> findReadingsByVin(String vin) {
+        TypedQuery<Reading> query = entityManager.createNamedQuery("Reading.findReadingsByVin",Reading.class);
+        query.setParameter("paramVehicleVin",vin);
+        List<Reading> resultList = query.getResultList();
+        return resultList;
+    }
+
     public Reading findById(String id) {
         TypedQuery<Reading> query=entityManager.createNamedQuery("Reading.findOneReading",Reading.class);
         query.setParameter("paramVehicleId",id);

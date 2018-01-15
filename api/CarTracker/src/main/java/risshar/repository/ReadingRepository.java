@@ -12,6 +12,8 @@ public interface ReadingRepository {
 
     List<Reading> findAllReadings();
 
+    List<Reading> findReadingsByVin(String vin);
+
     Reading findById(String id);
 
     Reading createReadings(Reading readings, Tire tire);
