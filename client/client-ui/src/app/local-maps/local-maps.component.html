@@ -1,0 +1,18 @@
+<h4> GeoLocation </h4>
+<agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="10"
+  [disableDefaultUI]="false"
+  [zoomControl]="false">>
+
+
+  <agm-marker *ngFor="let m of readings;"
+              [latitude]="m.latitude"
+              [longitude]="m.longitude"
+              [label]=""
+              [markerDraggable]="true">
+
+  </agm-marker>
+
+</agm-map>

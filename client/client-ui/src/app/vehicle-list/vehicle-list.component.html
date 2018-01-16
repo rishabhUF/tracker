@@ -6,7 +6,6 @@
     <th>Model</th>
     <th>Year</th>
     <th>Last Service Date</th>
-    <th> Current Time</th>
   </tr>
   </thead>
   <tbody>
@@ -17,9 +16,7 @@
     <td>{{vehicle.model}}</td>
     <td>{{vehicle.year}}</td>
     <td>{{vehicle.lastServiceDate | date: "medium"}}</td>
-    <td>{{load.loadDate * 1000 | date}}</td>
   </tr>
   </tbody>
 </table>
-<a [routerLink]="['/alerts']" class="btn btn-primary">Check High Alerts</a>
-<a [routerLink]="['/readings']" class="btn btn-primary">Check All Readings</a>
+

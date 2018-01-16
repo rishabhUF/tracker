@@ -1,36 +1,35 @@
 <h4>Vehicle Details</h4>
-<table style="width:100%">
+<table class="table">
+  <thead>
   <tr>
-    <th>VIN:</th>
-    <td>{{vehicle.vin}}</td>
+    <th>Vin</th>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Year</th>
+    <th>Red Line RPM</th>
+    <th>Max Fuel Volume</th>
+    <th>Last Service Date</th>
+    <th>GeoLocation</th>
+    <th>Line Graph</th>
+    <th>Alerts</th>
+    <th>Readings</th>
   </tr>
-  <tr>
-    <th>Make:</th>
-    <td>{{vehicle.make}}</td>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let v of vehicle">
+    <td>{{v.vin}}</td>
+    <td>{{v.make}}</td>
+    <td>{{v.model}}</td>
+    <td>{{v.year}}</td>
+    <td>{{v.redlineRpm}}</td>
+    <td>{{v.maxFuelVolume}}</td>
+    <td>{{v.lastServiceDate | date: "small"}}</td>
+    <td><a [routerLink]="['geoloaction/',v.vin]" class="btn btn-primary"> 30 minutes</a></td>
+    <td><a [routerLink]=" ['graphs/', v.vin]" class="btn btn-primary">Line Graph</a></td>
+    <td><a [routerLink]=" ['alerts/', v.vin]" class="btn btn-primary">Alerts</a></td>
+    <td><a [routerLink]=" ['readings/', v.vin]" class="btn btn-primary">Readings</a></td>
   </tr>
-  <tr>
-    <th>Model:</th>
-    <td>{{vehicle.model}}</td>
-  </tr>
-  <tr>
-    <th>Year:</th>
-    <td>{{vehicle.year}}</td>
-  </tr>
-  <tr>
-    <th>Red Line RPM:</th>
-    <td>{{vehicle.redlineRpm}}</td>
-  </tr>
-  <tr>
-    <th>Max Fuel Volume:</th>
-    <td>{{vehicle.maxFuelVolume}}</td>
-  </tr>
-  <tr>
-    <th>Last Service Date:</th>
-    <td>{{vehicle.lastServiceDate | date: "medium"}}</td>
-  </tr>
+  </tbody>
 </table>
-<hr>
-<a [routerLink]="['/readings',vehicle.vin]" class="btn btn-primary">Map & Reading</a>
-<a [routerLink]="['/graph',vehicle.vin]" class="btn btn-primary">Line Graph</a>
-<a [routerLink]="['/alerts',vehicle.vin]" class="btn btn-primary">Alert History</a>
-<a [routerLink]="['/vehicles']" class="btn btn-primary">Go Back</a>
+

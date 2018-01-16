@@ -10,13 +10,6 @@ import { ActivatedRoute } from '@angular/router';
 export class VehicleDetailsComponent {
   vehicle;
   constructor(private route: ActivatedRoute, vehicleServiceService: VehicleServiceService) {
-    // this.vehicleServiceService.getVehiclebyVin()
-    //   .subscribe(
-    //     vehicle => this.vehicle = vehicle,
-    //     error => console.log(error)
-    //   );
-    //
-
     this.route.params.subscribe(params => {
       vehicleServiceService.getVehiclebyVin(params.id)
         .subscribe(vehicle => this.vehicle = vehicle);

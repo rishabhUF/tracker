@@ -12,16 +12,18 @@ export class VehicleServiceService {
 
   constructor(private  http: HttpClient) { }
 
+  // GET the full list of vehicles
   getVehicles(): Observable<any[]> {
     return this.http.get('/assets/vehicle.json')
       .map(response => response)
       .catch(error => Observable.throw(error.statusText));
   }
 
+  // GET the details of single vehicle
   getVehiclebyVin(vin): Observable<any> {
-    return this.http.get('asserts/vehicle.json')
+    console.log(vin);
+    return this.http.get('/assets/vehicle.json')
       .map(response => response)
-      .filter(response => response === vin)
       .catch(error => Observable.throw(error.statusText));
   }
 }
