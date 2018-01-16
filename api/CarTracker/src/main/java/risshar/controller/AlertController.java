@@ -1,3 +1,4 @@
+
 package risshar.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/alerts")
-@CrossOrigin(origins = {"http://mocker.egen.io","http://localhost:8080"}, maxAge = 3600)
+@CrossOrigin(origins = {"http://mocker.egen.io","http://localhost:8080","http://localhost:4200"}, maxAge = 3600)
 public class AlertController {
 
     // ENDPOINTS TO SUPPORT MY FRONTEND REQUIREMENTS
@@ -28,9 +29,10 @@ public class AlertController {
         return alertService.findHighPriorityAlerts();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{vin}")
+    @RequestMapping(method = RequestMethod.GET, value = "/time/{vin}")
     public List<Alert> findAlertsByVin(@PathVariable("vin") String vehicleVin)
     {
+        System.out.println(vehicleVin);
         return alertService.findAlertsByVin(vehicleVin);
     }
 }

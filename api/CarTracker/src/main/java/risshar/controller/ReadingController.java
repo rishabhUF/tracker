@@ -46,11 +46,10 @@ public class ReadingController {
         readingsService.deleteReadings(readingId);
     }
 
-
-    //Get endpoints for the UI readings
-    @RequestMapping(method = RequestMethod.GET, value="/{vin}")
-    public List<Reading> findReadingsByVin(@PathVariable("vin") String readingVin)
+    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    public List<Reading> findReadingByVin(@PathVariable("id") String vehicleVin)
     {
-        return readingsService.findReadingByVin(readingVin);
+        return readingsService.findReadingByVin(vehicleVin);
     }
+
 }

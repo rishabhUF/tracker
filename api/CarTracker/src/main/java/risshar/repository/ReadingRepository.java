@@ -12,8 +12,6 @@ public interface ReadingRepository {
 
     List<Reading> findAllReadings();
 
-    List<Reading> findReadingsByVin(String vin);
-
     Reading findById(String id);
 
     Reading createReadings(Reading readings, Tire tire);
@@ -25,4 +23,5 @@ public interface ReadingRepository {
     // Alerts Function definitions
     void createAlert(String vehicleVin, String priority, String alertMessage);
 
+    List<Reading> findReadingByVin(String vehicleVin);
 }

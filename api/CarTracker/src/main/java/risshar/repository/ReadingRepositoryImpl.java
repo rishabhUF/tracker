@@ -8,8 +8,10 @@ import risshar.entity.Vehicle;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -24,13 +26,6 @@ public class ReadingRepositoryImpl implements ReadingRepository {
         List<Reading> resultList=query.getResultList();
         return resultList;
 
-    }
-
-    public List<Reading> findReadingsByVin(String vin) {
-        TypedQuery<Reading> query = entityManager.createNamedQuery("Reading.findReadingsByVin",Reading.class);
-        query.setParameter("paramVehicleVin",vin);
-        List<Reading> resultList = query.getResultList();
-        return resultList;
     }
 
     public Reading findById(String id) {
@@ -75,5 +70,16 @@ public class ReadingRepositoryImpl implements ReadingRepository {
         Alert alert = new Alert(vehicleVin, priority, alertMessage);
         entityManager.persist(alert);
 
+    }
+
+    public List<Reading> findReadingByVin(String vehicleVin) {
+        int secs = 15 * 60; //All the alerts till 20 min before current time.
+        TypedQuery<Reading> query = entityManager.createNamedQuery("Reading.findReadingByVin",Reading.class);
+        query.setParameter("paramVehicleVin",vehicleVin);
+        query.setParameter("paramTimestamp",new Date(System.currentTimeMillis() - secs*1000), TemporalType.DATE);
+
+        List<Reading> resultList=query.getResultList();
+
+        return resultList;
     }
 }

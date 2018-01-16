@@ -9,9 +9,8 @@ import java.util.UUID;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name= "findAllAlerts", query = "SELECT alert FROM Alert"),
-        @NamedQuery(name= "findHighPriorityAlerts", query = "SELECT alert FROM Alert alert WHERE alert.priority = :paramsHigh"),
-        @NamedQuery(name = "findAlertsByVin", query = "SELECT alert FROM Alert alert WHERE alert.vin = :paramVehicleVin")
+        @NamedQuery(name= "Alert.findHighPriorityAlerts", query = "SELECT alert FROM Alert alert WHERE alert.priority = :paramsHigh"),
+        @NamedQuery(name = "Alert.findAlertsByVin", query = "SELECT alert FROM Alert alert WHERE alert.vehicleVin = :paramVehicleVin ")
 })
 public class Alert {
     @Id

@@ -11,5 +11,5 @@ public interface AlertRepository {
 
     List<Alert> findHighPriorityAlerts();
 
-    List<Alert> findAlertsByVin(String vin);
+    List<Alert> findAlertsByVinRepo(String vin);
 }
