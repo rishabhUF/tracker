@@ -16,7 +16,7 @@ export class AlertsService {
 
   getAllAlertsByVin(vin): Observable<any[]> {
     console.log('Hello World' + vin);
-    return this.http.get('http://localhost:8080/vehicles/readings/${vin}')
+    return this.http.get(`http://localhost:8080/alerts/time/${vin}`)
       .map(response => response)
       .catch(error => Observable.throw(error.statusText));
   }

@@ -33,7 +33,7 @@ export class ReadingGraphsComponent {
     {data: [], label: 'Fuel Volume'}
   ];
 
-  public lineChartTimeStampLabels: Array<any> = [];
+  public lineChartTimeStampLabels: Array<any> = [0 , 2, 4, 6, 8, 10, 12];
 
   public lineChartOptions: any = {
     responsive: true
@@ -68,14 +68,14 @@ export class ReadingGraphsComponent {
   public lineChartType = 'line';
 
   public randomize(): void {
-    const _lineChartData: Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
+    const _lineChartData: Array<any> = new Array(this.lineChartReadingData.length);
+    for (let i = 0; i < this.lineChartReadingData.length; i++) {
+      _lineChartData[i] = {data: new Array(this.lineChartReadingData[i].data.length), label: this.lineChartReadingData[i].label};
+      for (let j = 0; j < this.lineChartTimeStampLabels[i].data.length; j++) {
         _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
       }
     }
-    this.lineChartData = _lineChartData;
+    this.lineChartTimeStampLabels = _lineChartData;
   }
 
   // events

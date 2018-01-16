@@ -8,13 +8,13 @@ export class ReadingsService {
   constructor(private http: HttpClient) {}
 
   getReadings(): Observable<any[]> {
-    return this.http.get('assets/readings.json')
+    return this.http.get(`http://localhost:8080/readings`)
       .map(response => response)
       .catch(error => Observable.throw(error.statusText));
   }
 
   getReadingsByVin(vehicleVin): Observable<any[]> {
-    return this.http.get('assests/readings/1HGCR2F3XFA027534.json')
+    return this.http.get(`http://localhost:8080/readings/${vehicleVin}`)
       .map(response => response)
       .catch(error => Observable.throw(error.statusText));
   }
