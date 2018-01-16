@@ -1,0 +1,35 @@
+<h4>Vehicle Details</h4>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Vin</th>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Year</th>
+    <th>Red Line RPM</th>
+    <th>Max Fuel Volume</th>
+    <th>Last Service Date</th>
+    <th>GeoLocation</th>
+    <th>Line Graph</th>
+    <th>Alerts</th>
+    <th>Readings</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let v of vehicle">
+    <td>{{v.vin}}</td>
+    <td>{{v.make}}</td>
+    <td>{{v.model}}</td>
+    <td>{{v.year}}</td>
+    <td>{{v.redlineRpm}}</td>
+    <td>{{v.maxFuelVolume}}</td>
+    <td>{{v.lastServiceDate | date: "small"}}</td>
+    <td><a [routerLink]="['geoloaction/',v.vin]" class="btn btn-primary"> 30 minutes</a></td>
+    <td><a [routerLink]=" ['graphs/', v.vin]" class="btn btn-primary">Line Graph</a></td>
+    <td><a [routerLink]=" ['alerts/', v.vin]" class="btn btn-primary">Alerts</a></td>
+    <td><a [routerLink]=" ['readings/', v.vin]" class="btn btn-primary">Readings</a></td>
+  </tr>
+  </tbody>
+</table>
+
